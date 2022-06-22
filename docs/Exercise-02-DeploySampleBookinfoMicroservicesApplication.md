@@ -136,6 +136,12 @@ spec:
     image: radial/busyboxplus:curl
     name: curl
 ```
+curl 명령어를 통한 로드생성. downstream 시스템인 neuvector 시스템의 IP와 istio ingress 게이트웨이의 Port(31380)을 통해서 부하줌
+AZURE 에서 제공된 neuvector host (20.198.7.72) 와 istio 31380 포트를 이용 http://20.198.7.72:31380/productpage 으로 업데이트
+(That is the URl that needs to be provided in the loadtest YAML. Its pointing to the Node IP address and the Istio Ingress Gateway Nodeport)
+# k get svc -n istio-system |grep Node
+istio-ingressgateway   NodePort    10.43.210.140   <none>        15021:32017/TCP,80:31380/TCP,443:31390/TCP,31400:31400/TCP,15443:30538/TCP   3h15m
+
 
 ![loadtest-yaml-modified-to-unique-rke-url](../images/loadtest-yaml-modified-to-unique-rke-url-16508833232382.png)
 
