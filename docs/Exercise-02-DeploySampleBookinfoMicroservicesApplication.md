@@ -137,6 +137,14 @@ spec:
     name: curl
 ```
 
+# k get svc -n istio-system |grep Node
+istio-ingressgateway   NodePort    10.43.210.140   <none>        15021:32017/TCP,80:31380/TCP,443:31390/TCP,31400:31400/TCP,15443:30538/TCP   3h15m
+istio 게이트웨이의 노드포트를 사용해서 접근 하도록 설정. Downstream 시스템인 NueVector 시스템의 IP 를 사용함
+http://20.198.7.72:31380/productpage 로 CURL 명령어를 보내서 부하를 발생도록 함.
+(That is the URl that needs to be provided in the loadtest YAML. Its pointing to the Node IP address and the Istio Ingress Gateway Nodeport)
+ 
+
+
 ![loadtest-yaml-modified-to-unique-rke-url](../images/loadtest-yaml-modified-to-unique-rke-url-16508833232382.png)
 
 Let's check if the pod is up and running by going to `Workload` > `Pods`. You might need to select the namespace `loadtest`.
